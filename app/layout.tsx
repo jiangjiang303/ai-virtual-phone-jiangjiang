@@ -15,7 +15,9 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
   userScalable: false,
-  viewportFit: "cover",
+  // iOS Home Screen PWAs may clip the bottom viewport when forced edge-to-edge.
+  // Let WebKit reserve the native status bar instead of combining cover + translucent.
+  viewportFit: "auto",
 };
 
 export const metadata: Metadata = {
@@ -32,12 +34,11 @@ export default function RootLayout({
     <html lang="zh-CN">
       <head>
         <link rel="manifest" href="/manifest.webmanifest" crossOrigin="use-credentials" />
-        <meta name="theme-color" content="#f8f7f2" />
+        <meta name="theme-color" content="#f1f2f6" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="icon" href="/icon-192.png" type="image/png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-title" content="float" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
         <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body>
